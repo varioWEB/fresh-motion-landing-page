@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,6 +53,30 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+        natural: {
+          50: '#F8FAF5',
+          100: '#F2FCE2',
+          200: '#E8F5E0',
+          300: '#D3E4C5',
+          400: '#A4C99B',
+          500: '#75AF72',
+          600: '#4D9049',
+          700: '#3A7537',
+          800: '#2A5926',
+          900: '#1C3C18',
+        },
+        beige: {
+          50: '#FDFBF7',
+          100: '#FAF6ED',
+          200: '#F4EAD5',
+          300: '#EADCBD',
+          400: '#E0C8A0',
+          500: '#D1B57E',
+          600: '#BF9A54',
+          700: '#A37E3B',
+          800: '#7D5F2D',
+          900: '#5A4420',
+        },
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +109,115 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+        },
+        'fade-in-down': {
+          '0%': { 
+            opacity: '0',
+            transform: 'translateY(-10px)'
+          },
+          '100%': { 
+            opacity: '1',
+            transform: 'translateY(0)'
+          }
+        },
+        'fade-in-up': {
+          '0%': { 
+            opacity: '0',
+            transform: 'translateY(10px)'
+          },
+          '100%': { 
+            opacity: '1',
+            transform: 'translateY(0)'
+          }
+        },
+        'fade-in-left': {
+          '0%': { 
+            opacity: '0',
+            transform: 'translateX(-20px)'
+          },
+          '100%': { 
+            opacity: '1',
+            transform: 'translateX(0)'
+          }
+        },
+        'fade-in-right': {
+          '0%': { 
+            opacity: '0',
+            transform: 'translateX(20px)'
+          },
+          '100%': { 
+            opacity: '1',
+            transform: 'translateX(0)'
+          }
+        },
+        'bounce': {
+          '0%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '50%': {
+            transform: 'translateY(-5px)',
+          }
+        },
+        'float': {
+          '0%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '50%': {
+            transform: 'translateY(-10px)',
+          }
+        },
+        'sway': {
+          '0%, 100%': {
+            transform: 'rotate(-3deg)',
+          },
+          '50%': {
+            transform: 'rotate(3deg)',
+          }
+        },
+        'pulse': {
+          '0%, 100%': {
+            opacity: '1',
+            transform: 'scale(1)',
+          },
+          '50%': {
+            opacity: '0.85',
+            transform: 'scale(1.05)',
+          }
+        },
+        'typewriter': {
+          to: { width: '100%' }
+        },
+        'blink': { 
+          '50%': { borderColor: 'transparent' }
+        },
+        'glow': {
+          '0%, 100%': { 
+            boxShadow: '0 0 5px rgba(117, 175, 114, 0.5)',
+          },
+          '50%': { 
+            boxShadow: '0 0 20px rgba(117, 175, 114, 0.8)',
+          }
+        }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-in': 'fade-in 0.7s ease-out forwards',
+        'fade-in-down': 'fade-in-down 0.7s ease-out forwards',
+        'fade-in-up': 'fade-in-up 0.7s ease-out forwards',
+        'fade-in-left': 'fade-in-left 0.7s ease-out forwards',
+        'fade-in-right': 'fade-in-right 0.7s ease-out forwards',
+        'bounce': 'bounce 2s ease-in-out infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'sway': 'sway 2.5s ease-in-out infinite',
+        'pulse': 'pulse 2s ease-in-out infinite',
+        'typewriter': 'typewriter 2s steps(40, end)',
+        'blink': 'blink 0.7s infinite',
+        'glow': 'glow 2s ease-in-out infinite',
 			}
 		}
 	},
