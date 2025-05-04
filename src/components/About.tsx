@@ -46,7 +46,7 @@ const About = () => {
             <img 
               src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&q=80&w=800"
               alt="Our kitchen team preparing healthy meals" 
-              className="relative z-10 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-500"
+              className="relative z-10 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-500 max-h-[400px] object-cover w-full"
             />
           </motion.div>
           
