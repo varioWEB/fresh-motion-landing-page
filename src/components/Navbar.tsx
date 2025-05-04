@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import { Leaf } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,6 +21,13 @@ const Navbar = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'About', path: '/#about' },
+    { name: 'Contact', path: '/contact' },
+  ];
 
   return (
     <header 
@@ -49,15 +57,15 @@ const Navbar = () => {
             >
               <Leaf size={28} className="animate-sway" />
             </motion.div>
-            <a href="#" className="text-xl font-bold text-natural-800">
+            <Link to="/" className="text-xl font-bold text-natural-800">
               Healthy Food
-            </a>
+            </Link>
           </motion.div>
           
           <ul className="hidden md:flex items-center space-x-8">
-            {['Home', 'About', 'Services', 'Contact'].map((item, index) => (
+            {navItems.map((item, index) => (
               <motion.li 
-                key={item}
+                key={item.name}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ 
@@ -65,12 +73,12 @@ const Navbar = () => {
                   delay: 0.1 * index 
                 }}
               >
-                <a 
-                  href={`#${item.toLowerCase()}`} 
+                <Link 
+                  to={item.path}
                   className="nav-link"
                 >
-                  {item}
-                </a>
+                  {item.name}
+                </Link>
               </motion.li>
             ))}
           </ul>
@@ -80,12 +88,12 @@ const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <a 
-              href="#signup" 
+            <Link
+              to="/contact" 
               className="rounded-md bg-natural-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-natural-700 hover:shadow-lg hover:animate-pulse"
             >
               Sign Up
-            </a>
+            </Link>
           </motion.div>
         </nav>
       </div>
