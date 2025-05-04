@@ -32,14 +32,16 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center min-h-[calc(100vh-64px)]">
           <div className="py-12 lg:pl-6">
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+            <motion.div
+              className="mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="typewriter mb-4 text-natural-800"
             >
-              Healthy Food Delivery
-            </motion.h1>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-natural-800 mb-4">
+                Healthy Food Delivery
+              </h1>
+            </motion.div>
             
             <motion.p 
               initial={{ opacity: 0, x: -20 }}
@@ -83,9 +85,9 @@ const Hero = () => {
             className="relative flex justify-center"
           >
             <img
-              src="/lovable-uploads/e4cb5aba-9e3a-4d81-a054-c7b5b8592c73.png"
-              alt="Healthy food bowl with vegetables, chicken and chickpeas"
-              className="rounded-full max-w-full h-auto object-cover shadow-lg"
+              src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80"
+              alt="Healthy food bowl with vegetables"
+              className="rounded-2xl w-full max-w-xl h-auto object-cover shadow-lg"
             />
           </motion.div>
         </div>
