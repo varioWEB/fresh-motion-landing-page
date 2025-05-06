@@ -8,6 +8,8 @@ import Testimonials from '@/components/Testimonials';
 import About from '@/components/About';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
+import ServicesSection from '@/components/ServicesSection';
+import ContactSection from '@/components/ContactSection';
 
 const Index = () => {
   useEffect(() => {
@@ -42,8 +44,16 @@ const Index = () => {
       <Hero />
       <HowItWorks />
       <Menu />
+      <div id="services">
+        <ServicesSection />
+      </div>
       <Testimonials />
-      <About />
+      <div id="about">
+        <About />
+      </div>
+      <div id="contact">
+        <ContactSection />
+      </div>
       <Newsletter />
       <Footer />
     </div>

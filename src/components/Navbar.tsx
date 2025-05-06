@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import { Leaf } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,9 +25,9 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
+    { name: 'Services', path: '/#services' },
     { name: 'About', path: '/#about' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Contact', path: '/#contact' },
   ];
 
   return (
@@ -73,12 +74,13 @@ const Navbar = () => {
                   delay: 0.1 * index 
                 }}
               >
-                <Link 
+                <HashLink 
+                  smooth
                   to={item.path}
                   className="nav-link"
                 >
                   {item.name}
-                </Link>
+                </HashLink>
               </motion.li>
             ))}
           </ul>
@@ -88,12 +90,13 @@ const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Link
-              to="/contact" 
+            <HashLink
+              smooth
+              to="/#contact" 
               className="rounded-md bg-natural-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-natural-700 hover:shadow-lg hover:animate-pulse"
             >
               Sign Up
-            </Link>
+            </HashLink>
           </motion.div>
         </nav>
       </div>
