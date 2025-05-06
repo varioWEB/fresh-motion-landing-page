@@ -1,225 +1,236 @@
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin } from 'lucide-react';
-import { toast } from "sonner";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from '@/hooks/use-toast';
 
-const ContactInfo = ({ icon: Icon, title, content, delay = 0 }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay }}
-    className="flex items-start space-x-4"
-  >
-    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-natural-100 text-natural-600 shrink-0">
-      <Icon size={20} />
-    </div>
-    <div>
-      <h3 className="font-medium text-lg text-natural-800">{title}</h3>
-      <p className="text-gray-600">{content}</p>
-    </div>
-  </motion.div>
-);
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  phone: z.string().min(10, { message: "Phone number must be at least 10 digits." }).optional(),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: ""
+    }
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  
+  const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      toast.success("Message sent successfully! We'll get back to you soon.");
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
+    try {
+      // Mock form submission
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      console.log('Form data:', data);
+      
+      toast({
+        title: "Message Sent",
+        description: "We've received your message and will get back to you soon!",
+        variant: "default",
       });
+      
+      reset();
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      
+      toast({
+        title: "Submission Failed",
+        description: "There was an error sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
-
+  
   return (
     <div className="min-h-screen bg-beige-50">
       <Navbar />
-      
-      <div className="pt-24 pb-16 md:pt-32">
+      <div className="pt-24 pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-natural-800 mb-4">Contact Us</h1>
-            <div className="w-24 h-1 bg-natural-500 mx-auto mb-8"></div>
-            <p className="max-w-2xl mx-auto text-gray-700">
-              Have questions or feedback? We'd love to hear from you. Reach out to our team
-              using any of the methods below.
+            <h1 className="text-4xl sm:text-5xl font-bold text-natural-800 mb-4">Contact Us</h1>
+            <p className="text-xl text-natural-600 max-w-2xl mx-auto">
+              Have questions or special dietary needs? We're here to help!
             </p>
           </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          
+          <div className="grid md:grid-cols-2 gap-12 items-start">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-white rounded-xl shadow-lg p-8"
             >
-              <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold text-natural-800 mb-6">Get in Touch</h2>
-                
-                <div className="space-y-6 mb-8">
-                  <ContactInfo 
-                    icon={Phone}
-                    title="Phone"
-                    content="+1 (555) 123-4567"
-                    delay={0.3}
+              <h2 className="text-2xl font-bold text-natural-800 mb-6">Send Us a Message</h2>
+              
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-natural-700 mb-1">
+                    Your Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    className={`w-full px-4 py-2 border rounded-md focus:ring focus:ring-natural-200 focus:border-natural-500 outline-none transition ${
+                      errors.name ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    placeholder="John Doe"
+                    {...register("name")}
                   />
-                  <ContactInfo 
-                    icon={Mail}
-                    title="Email"
-                    content="hello@healthyfooddelivery.com"
-                    delay={0.5}
-                  />
-                  <ContactInfo 
-                    icon={MapPin}
-                    title="Address"
-                    content="123 Nutrition St, Healthy City, HC 90210"
-                    delay={0.7}
-                  />
+                  {errors.name && (
+                    <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+                  )}
                 </div>
                 
-                <h3 className="font-semibold text-lg mb-4 text-natural-800">Business Hours</h3>
-                <table className="w-full text-gray-600">
-                  <tbody>
-                    <tr>
-                      <td className="py-1">Monday - Friday:</td>
-                      <td className="py-1 text-right">9:00 AM - 6:00 PM</td>
-                    </tr>
-                    <tr>
-                      <td className="py-1">Saturday:</td>
-                      <td className="py-1 text-right">10:00 AM - 4:00 PM</td>
-                    </tr>
-                    <tr>
-                      <td className="py-1">Sunday:</td>
-                      <td className="py-1 text-right">Closed</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-natural-700 mb-1">
+                    Email Address <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    className={`w-full px-4 py-2 border rounded-md focus:ring focus:ring-natural-200 focus:border-natural-500 outline-none transition ${
+                      errors.email ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    placeholder="your@email.com"
+                    {...register("email")}
+                  />
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                  )}
+                </div>
+                
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-natural-700 mb-1">
+                    Phone Number (Optional)
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-natural-200 focus:border-natural-500 outline-none transition"
+                    placeholder="(123) 456-7890"
+                    {...register("phone")}
+                  />
+                  {errors.phone && (
+                    <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
+                  )}
+                </div>
+                
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-natural-700 mb-1">
+                    Your Message <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    className={`w-full px-4 py-2 border rounded-md focus:ring focus:ring-natural-200 focus:border-natural-500 outline-none transition resize-none ${
+                      errors.message ? 'border-red-500' : 'border-gray-300'
+                    }`}
+                    placeholder="Tell us how we can help you..."
+                    {...register("message")}
+                  ></textarea>
+                  {errors.message && (
+                    <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
+                  )}
+                </div>
+                
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full btn-primary flex justify-center items-center"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center">
+                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    "Send Message"
+                  )}
+                </button>
+              </form>
             </motion.div>
             
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="space-y-8"
             >
-              <div className="bg-white rounded-lg shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-natural-800 mb-6">Send a Message</h2>
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div>
-                    <Label htmlFor="name">Your Name</Label>
-                    <Input 
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="mt-1"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input 
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="mt-1"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input 
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="mt-1"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea 
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="mt-1 min-h-[120px]"
-                      required
-                    />
-                  </div>
-                  
-                  <Button 
-                    type="submit"
-                    className="w-full bg-natural-600 hover:bg-natural-700"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </Button>
-                </form>
+              <div className="bg-white rounded-xl shadow-sm p-8 border border-natural-100">
+                <h3 className="text-xl font-semibold text-natural-800 mb-4">Our Location</h3>
+                <p className="text-natural-600 mb-3">
+                  123 Health Street<br />
+                  Nutrition City, NC 28123<br />
+                  United States
+                </p>
+              </div>
+              
+              <div className="bg-white rounded-xl shadow-sm p-8 border border-natural-100">
+                <h3 className="text-xl font-semibold text-natural-800 mb-4">Contact Information</h3>
+                <div className="space-y-3 text-natural-600">
+                  <p>
+                    <span className="font-medium">Email:</span><br />
+                    info@healthyfood.com
+                  </p>
+                  <p>
+                    <span className="font-medium">Phone:</span><br />
+                    (555) 123-4567
+                  </p>
+                  <p>
+                    <span className="font-medium">Hours:</span><br />
+                    Monday-Friday: 9am - 6pm<br />
+                    Saturday: 10am - 4pm<br />
+                    Sunday: Closed
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-natural-600 rounded-xl shadow-lg p-8 text-white">
+                <h3 className="text-xl font-semibold mb-4">Need Immediate Help?</h3>
+                <p className="mb-4">
+                  Our customer service team is ready to assist you with any questions about our meal plans, delivery options, or special dietary requirements.
+                </p>
+                <a 
+                  href="tel:+15551234567" 
+                  className="inline-flex items-center px-4 py-2 bg-white text-natural-600 rounded-md font-medium hover:bg-natural-50 transition-colors"
+                >
+                  Call Us Now
+                </a>
               </div>
             </motion.div>
           </div>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="mt-16 rounded-lg overflow-hidden shadow-lg"
-          >
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059414285!2d-74.25986637389777!3d40.69714940704456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1679000301110!5m2!1sen!2sus" 
-              width="100%" 
-              height="400" 
-              style={{ border: 0 }} 
-              allowFullScreen="" 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Our Location"
-            />
-          </motion.div>
         </div>
       </div>
-      
       <Footer />
     </div>
   );

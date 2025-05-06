@@ -28,17 +28,23 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-beige-50 pt-16">
+    <section 
+      className="relative min-h-screen overflow-hidden bg-cover bg-center pt-16" 
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80')`,
+        backgroundAttachment: 'fixed'
+      }}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center min-h-[calc(100vh-64px)]">
-          <div className="py-12 lg:pl-6">
+        <div className="grid grid-cols-1 gap-8 items-center min-h-[calc(100vh-64px)]">
+          <div className="py-12 z-10">
             <motion.div
               className="mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-natural-800 mb-4">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 drop-shadow-lg">
                 Healthy Food Delivery
               </h1>
             </motion.div>
@@ -47,7 +53,7 @@ const Hero = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="mb-8 text-xl text-natural-700 max-w-lg"
+              className="mb-8 text-xl text-white max-w-lg drop-shadow-md"
             >
               Fresh and healthy meals delivered to your door
             </motion.p>
@@ -67,7 +73,7 @@ const Hero = () => {
               
               <motion.a
                 href="#learn"
-                className="btn-secondary link-underline group"
+                className="btn-secondary bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 group"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1 }}
@@ -77,19 +83,6 @@ const Hero = () => {
               </motion.a>
             </div>
           </div>
-          
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative flex justify-center"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80"
-              alt="Healthy food bowl with vegetables"
-              className="rounded-2xl w-full max-w-xl h-auto object-cover shadow-lg"
-            />
-          </motion.div>
         </div>
       </div>
     </section>
