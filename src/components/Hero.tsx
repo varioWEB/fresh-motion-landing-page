@@ -31,8 +31,9 @@ const Hero = () => {
     <section 
       className="relative min-h-screen overflow-hidden bg-cover bg-center pt-16" 
       style={{
-        backgroundImage: `url('https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80')`,
-        backgroundAttachment: 'fixed'
+        backgroundImage: `url('/lovable-uploads/31bc2335-660e-4f62-82a9-f95b6e9b8ca9.png')`,
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover'
       }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,7 +45,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 drop-shadow-lg">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-natural-800 mb-4 drop-shadow-lg">
                 Healthy Food Delivery
               </h1>
             </motion.div>
@@ -53,7 +54,7 @@ const Hero = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="mb-8 text-xl text-white max-w-lg drop-shadow-md"
+              className="mb-8 text-xl text-natural-800 max-w-lg drop-shadow-md"
             >
               Fresh and healthy meals delivered to your door
             </motion.p>
@@ -73,7 +74,7 @@ const Hero = () => {
               
               <motion.a
                 href="#learn"
-                className="btn-secondary bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 group"
+                className="btn-secondary bg-white/50 backdrop-blur-sm text-natural-800 hover:bg-white/70 group"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1 }}
