@@ -32,7 +32,6 @@ const Hero = () => {
       className="relative min-h-screen overflow-hidden bg-cover bg-center pt-16" 
       style={{
         backgroundImage: `url('/lovable-uploads/31bc2335-660e-4f62-82a9-f95b6e9b8ca9.png')`,
-        backgroundAttachment: 'fixed',
         backgroundSize: 'cover'
       }}
     >
