@@ -9,7 +9,6 @@ import About from '@/components/About';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
 import ServicesSection from '@/components/ServicesSection';
-import ContactSection from '@/components/ContactSection';
 
 const Index = () => {
   useEffect(() => {
@@ -50,9 +49,6 @@ const Index = () => {
       <Testimonials />
       <div id="about">
         <About />
-      </div>
-      <div id="contact">
-        <ContactSection />
       </div>
       <Newsletter />
       <Footer />
