@@ -44,7 +44,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-natural-800 mb-4 drop-shadow-lg">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-natural-800 mb-4 drop-shadow-lg text-shadow-blur">
                 Healthy Food Delivery
               </h1>
             </motion.div>
@@ -53,7 +53,7 @@ const Hero = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="mb-8 text-xl text-natural-800 max-w-lg drop-shadow-md"
+              className="mb-8 text-xl text-natural-800 max-w-lg text-shadow-blur"
             >
               Fresh and healthy meals delivered to your door
             </motion.p>
