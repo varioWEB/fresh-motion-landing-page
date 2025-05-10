@@ -108,7 +108,7 @@ const ServicesSection = () => {
             duration: 0.5,
             delay: 0.3
           }} className="h-64 md:h-auto">
-              <img src="https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&q=80&w=800" alt="Healthy meal preparation" className="w-full object-cover" />
+              <img src="https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&q=80&w=800" alt="Healthy meal preparation" className="w-full h-full object-cover" />
             </motion.div>
             <div className="p-8 md:p-12">
               <motion.h2 initial={{
