@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -131,9 +132,7 @@ const ServicesSection = () => {
               duration: 0.5,
               delay: 0.7
             }} className="text-gray-700 mb-6">
-                Sign up for our weekly meal delivery service and receive fresh, nutritious meals 
-                delivered to your doorstep. Choose from our rotating menu of seasonal dishes, 
-                all prepared with high-quality ingredients to fuel your busy lifestyle.
+                Weekly meal delivery with fresh, seasonal dishes right to your doorstep.
               </motion.p>
               <motion.button initial={{
               opacity: 0
