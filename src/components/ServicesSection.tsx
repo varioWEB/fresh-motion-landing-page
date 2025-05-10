@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -108,7 +107,7 @@ const ServicesSection = () => {
           }} transition={{
             duration: 0.5,
             delay: 0.3
-          }} className="h-64 md:h-auto">
+          }} className="h-40 md:h-56">
               <img src="https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&q=80&w=800" alt="Healthy meal preparation" className="w-full h-full object-cover" />
             </motion.div>
             <div className="p-8 md:p-12">
