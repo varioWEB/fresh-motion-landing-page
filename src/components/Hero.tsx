@@ -37,15 +37,15 @@ const Hero = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 items-center min-h-[calc(100vh-64px)]">
-          <div className="py-12 z-10">
+          <div className="py-24 z-10">
             <motion.div
-              className="mb-6"
+              className="mb-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-natural-800 mb-4 drop-shadow-lg text-shadow-blur">
-                Healthy Food Delivery
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 drop-shadow-lg text-shadow-blur leading-tight">
+                Healthy Food<br />Delivery
               </h1>
             </motion.div>
             
@@ -53,12 +53,12 @@ const Hero = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="mb-8 text-xl text-natural-800 max-w-lg text-shadow-blur"
+              className="mb-12 text-xl text-white max-w-lg text-shadow-blur"
             >
               Fresh and healthy meals delivered to your door
             </motion.p>
             
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-6">
               <motion.a
                 href="#order"
                 className="btn-primary"

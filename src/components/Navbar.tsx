@@ -54,11 +54,11 @@ const Navbar = () => {
                 repeat: Infinity,
                 repeatDelay: 1
               }}
-              className="mr-2 text-natural-600"
+              className={`mr-2 ${isScrolled ? 'text-natural-600' : 'text-white'}`}
             >
               <Leaf size={28} className="animate-sway" />
             </motion.div>
-            <Link to="/" className="text-xl font-bold text-natural-800">
+            <Link to="/" className={`text-xl font-bold ${isScrolled ? 'text-natural-800' : 'text-white'}`}>
               Healthy Food
             </Link>
           </motion.div>
@@ -78,14 +78,14 @@ const Navbar = () => {
                   <HashLink 
                     smooth
                     to={item.path}
-                    className="nav-link"
+                    className={`nav-link ${isScrolled ? 'text-natural-800' : 'text-white'} hover:opacity-80`}
                   >
                     {item.name}
                   </HashLink>
                 ) : (
                   <Link
                     to={item.path}
-                    className="nav-link"
+                    className={`nav-link ${isScrolled ? 'text-natural-800' : 'text-white'} hover:opacity-80`}
                   >
                     {item.name}
                   </Link>
