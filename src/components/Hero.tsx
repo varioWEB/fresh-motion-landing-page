@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 
 const Hero = () => {
   const textRef = useRef<HTMLDivElement>(null);
@@ -44,7 +44,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 drop-shadow-lg text-shadow-blur leading-tight">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 drop-shadow-lg text-shadow-blur leading-tight">
                 Healthy Food<br />Delivery
               </h1>
             </motion.div>
@@ -53,7 +53,7 @@ const Hero = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="mb-12 text-xl text-white max-w-lg text-shadow-blur"
+              className="mb-14 text-2xl sm:text-3xl text-white max-w-lg text-shadow-blur"
             >
               Fresh and healthy meals delivered to your door
             </motion.p>
@@ -61,30 +61,70 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-6">
               <motion.a
                 href="#order"
-                className="btn-primary"
-                whileHover={{ scale: 1.05 }}
+                className="btn-primary group relative overflow-hidden"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)"
+                }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
               >
-                Order Now
+                <span className="relative z-10">Order Now</span>
+                <span className="absolute inset-0 bg-natural-700 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
               </motion.a>
               
               <motion.a
                 href="#learn"
-                className="btn-secondary bg-white/50 backdrop-blur-sm text-natural-800 hover:bg-white/70 group"
+                className="btn-secondary bg-white/50 backdrop-blur-sm text-natural-800 hover:bg-white/70 group relative overflow-hidden"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.1)"
+                }}
+                whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1 }}
               >
-                Learn More
-                <ArrowRight size={18} className="ml-1 transition-transform group-hover:translate-x-1" />
+                <span className="relative z-10">Learn More</span>
+                <span className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
+                <ArrowDown size={18} className="ml-1 transition-transform group-hover:translate-x-1" />
               </motion.a>
             </div>
           </div>
         </div>
       </div>
+      
+      {/* Scroll Down Arrow */}
+      <motion.div 
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer"
+        initial={{ y: -10, opacity: 0 }}
+        animate={{ 
+          y: 0,
+          opacity: 1,
+          transition: {
+            delay: 1.5,
+          }
+        }}
+        whileHover={{ scale: 1.2 }}
+      >
+        <a href="#order" className="flex flex-col items-center text-white">
+          <span className="text-sm font-medium mb-2">Scroll Down</span>
+          <motion.div
+            animate={{ 
+              y: [0, 10, 0],
+            }}
+            transition={{ 
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "loop"
+            }}
+          >
+            <ArrowDown size={30} className="text-white" />
+          </motion.div>
+        </a>
+      </motion.div>
     </section>
   );
 };
