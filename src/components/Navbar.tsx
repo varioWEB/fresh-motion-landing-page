@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <header 
-      className={`fixed top-6 left-0 right-0 z-50 transition-all duration-300 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl`}
+      className="fixed top-6 left-0 right-0 z-50 transition-all duration-300 container mx-auto"
     >
       <div className={`rounded-xl transition-all duration-300 ${
         isScrolled 
