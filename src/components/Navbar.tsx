@@ -32,14 +32,14 @@ const Navbar = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white py-2 shadow-md' 
-          : 'bg-transparent py-4'
-      }`}
+      className={`fixed top-6 left-0 right-0 z-50 transition-all duration-300 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="flex items-center justify-between">
+      <div className={`rounded-xl transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white py-3 shadow-lg' 
+          : 'bg-white/30 backdrop-blur-md py-4'
+      }`}>
+        <nav className="flex items-center justify-between px-6">
           <motion.div 
             className="flex items-center"
             initial={{ opacity: 0 }}
@@ -54,11 +54,11 @@ const Navbar = () => {
                 repeat: Infinity,
                 repeatDelay: 1
               }}
-              className={`mr-2 ${isScrolled ? 'text-natural-600' : 'text-white'}`}
+              className="mr-2 text-natural-600"
             >
-              <Leaf size={28} className="animate-sway" />
+              <Leaf size={28} className="animate-sway text-natural-600" />
             </motion.div>
-            <Link to="/" className={`text-xl font-bold ${isScrolled ? 'text-natural-800' : 'text-white'}`}>
+            <Link to="/" className="text-xl font-bold text-natural-600">
               Healthy Food
             </Link>
           </motion.div>
@@ -78,14 +78,14 @@ const Navbar = () => {
                   <HashLink 
                     smooth
                     to={item.path}
-                    className={`nav-link ${isScrolled ? 'text-natural-800' : 'text-white'} hover:opacity-80`}
+                    className="nav-link text-natural-600 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-bottom-right after:scale-x-0 after:bg-natural-600 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100 hover:text-natural-700"
                   >
                     {item.name}
                   </HashLink>
                 ) : (
                   <Link
                     to={item.path}
-                    className={`nav-link ${isScrolled ? 'text-natural-800' : 'text-white'} hover:opacity-80`}
+                    className="nav-link text-natural-600 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-bottom-right after:scale-x-0 after:bg-natural-600 after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-bottom-left hover:after:scale-x-100 hover:text-natural-700"
                   >
                     {item.name}
                   </Link>
