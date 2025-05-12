@@ -41,12 +41,18 @@ const Index = () => {
     <div className="min-h-screen bg-beige-50">
       <Navbar />
       <Hero />
-      <HowItWorks />
-      <Menu />
+      <div id="howItWorks">
+        <HowItWorks />
+      </div>
+      <div id="order">
+        <Menu />
+      </div>
       <div id="services">
         <ServicesSection />
       </div>
-      <Testimonials />
+      <div id="learn">
+        <Testimonials />
+      </div>
       <div id="about">
         <About />
       </div>

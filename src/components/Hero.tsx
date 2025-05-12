@@ -27,14 +27,24 @@ const Hero = () => {
     };
   }, []);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section 
       className="relative min-h-screen overflow-hidden bg-cover bg-center pt-16" 
       style={{
-        backgroundImage: `url('/lovable-uploads/31bc2335-660e-4f62-82a9-f95b6e9b8ca9.png')`,
+        backgroundImage: `url('/lovable-uploads/77a66f31-2d13-4c45-8a3c-8f52509da021.png')`,
         backgroundSize: 'cover'
       }}
     >
+      {/* Semi-transparent overlay to improve text readability */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 items-center min-h-[calc(100vh-64px)]">
           <div className="py-24 z-10">
@@ -59,8 +69,8 @@ const Hero = () => {
             </motion.p>
             
             <div className="flex flex-col sm:flex-row gap-6">
-              <motion.a
-                href="#order"
+              <motion.button
+                onClick={() => scrollToSection('order')}
                 className="btn-primary group relative overflow-hidden"
                 whileHover={{ 
                   scale: 1.05,
@@ -73,10 +83,10 @@ const Hero = () => {
               >
                 <span className="relative z-10">Order Now</span>
                 <span className="absolute inset-0 bg-natural-700 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
-              </motion.a>
+              </motion.button>
               
-              <motion.a
-                href="#learn"
+              <motion.button
+                onClick={() => scrollToSection('learn')}
                 className="btn-secondary bg-white/50 backdrop-blur-sm text-natural-800 hover:bg-white/70 group relative overflow-hidden"
                 whileHover={{ 
                   scale: 1.05,
@@ -90,7 +100,7 @@ const Hero = () => {
                 <span className="relative z-10">Learn More</span>
                 <span className="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
                 <ArrowDown size={18} className="ml-1 transition-transform group-hover:translate-x-1" />
-              </motion.a>
+              </motion.button>
             </div>
           </div>
         </div>
@@ -108,8 +118,9 @@ const Hero = () => {
           }
         }}
         whileHover={{ scale: 1.2 }}
+        onClick={() => scrollToSection('howItWorks')}
       >
-        <a href="#order" className="flex flex-col items-center text-white">
+        <div className="flex flex-col items-center text-white">
           <span className="text-sm font-medium mb-2">Scroll Down</span>
           <motion.div
             animate={{ 
@@ -123,7 +134,7 @@ const Hero = () => {
           >
             <ArrowDown size={30} className="text-white" />
           </motion.div>
-        </a>
+        </div>
       </motion.div>
     </section>
   );
